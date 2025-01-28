@@ -169,5 +169,27 @@ docker run -d -p 9090:8080 springboot
 
 open browser http://3.148.112.188:9090/ and enter
 
+Deploying Python with docker file
+
+https://github.com/KastroVKiran/Docker-Python-Project.git
+
+dockerfile
+
+FROM python:3.6
+MAINTAINER vk67220
+WORKDIR /app
+COPY . /app
+RUN ls -l /app
+RUN pip install --upgrade pip && pip install -r requirements.txt
+EXPOSE 5000
+ENTRYPOINT ["python", "app.py"]
+
+docker build -t <ImageName> .
+
+docker run -d -p 5000:5000 app_python
+
+now in ec2 security groups port enable for 5000
+
+on browser http://3.148.112.188:5000/
 
 
