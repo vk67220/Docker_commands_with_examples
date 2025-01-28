@@ -192,4 +192,36 @@ now in ec2 security groups port enable for 5000
 
 on browser http://3.148.112.188:5000/
 
+Docker Volume Commands
+-------------------------------------
+1. docker volume --help ---> To see the commands related to the docker volume
+2. docker volume ls ---> To see the local docker volume
+3. docker volume <Volume-Name> ---> To create a docker volume
+4. docker volume inspect <Volume-Name> ---> To see the metadata of a volume
+5. docker volume rm <Volume-Name> ---> To remove the docker volume
+6. docker volume prune ---> To remove all the unused volumes
 
+Method 1: creation of docker volumes using Docker File
+
+FROM ubuntu
+VOLUME ["/volume1"]
+
+Share the volume1 from container1 to container2
+
+docker run -it --name container02 --volumes-from container01 --privileged=true ubuntu
+
+Method 2: Creation of docker volume using CLI
+
+docker run --it --name container03 -v /volume2 ubuntu
+
+Share the volume1 from container3 to container2
+
+docker run -it --name container04 --volumes-from container03 --privileged=true ubuntu
+
+Method 3: Using volume mounting concept we will see how to create a docker volume
+
+To create a volume ---> docker volume create <Volume-Name>
+To see the list of volumes ---> docker volume ls
+To get the metadata/information of a volume ---> docker volume inspect <Volume-Name>
+
+docker run -it --name container5 --mount source=volume01,destination=/volume02 ubuntu
