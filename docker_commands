@@ -254,4 +254,7 @@ $ docker-compose down
 Default docker-compose file name
 docker-compose.yml
 
+to delete all container at the same time
+docker kill $(docker ps -a -q)
+
 
